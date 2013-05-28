@@ -21,6 +21,9 @@
 		486BDE891753978D000F3B07 /* AGTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE881753978D000F3B07 /* AGTask.m */; };
 		486BDE911753B480000F3B07 /* AGTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE901753B480000F3B07 /* AGTaskViewController.m */; };
 		486BDE941753FA23000F3B07 /* AGTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE931753FA23000F3B07 /* AGTitleCell.m */; };
+		486BDE981754B1AC000F3B07 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE971754B1AC000F3B07 /* TextViewCell.m */; };
+		486BDE9B1754E2A5000F3B07 /* TextViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE9A1754E2A5000F3B07 /* TextViewCell1.m */; };
+		486BDE9E1754EA17000F3B07 /* TextViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE9D1754EA17000F3B07 /* TextViewCell2.m */; };
 		4E064F067F8B48D68EFA3A3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF644C7C316341C0950BECD6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,12 @@
 		486BDE901753B480000F3B07 /* AGTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTaskViewController.m; sourceTree = "<group>"; };
 		486BDE921753FA23000F3B07 /* AGTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTitleCell.h; sourceTree = "<group>"; };
 		486BDE931753FA23000F3B07 /* AGTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTitleCell.m; sourceTree = "<group>"; };
+		486BDE961754B1AC000F3B07 /* TextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewCell.h; sourceTree = "<group>"; };
+		486BDE971754B1AC000F3B07 /* TextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewCell.m; sourceTree = "<group>"; };
+		486BDE991754E2A5000F3B07 /* TextViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewCell1.h; sourceTree = "<group>"; };
+		486BDE9A1754E2A5000F3B07 /* TextViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewCell1.m; sourceTree = "<group>"; };
+		486BDE9C1754EA17000F3B07 /* TextViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewCell2.h; sourceTree = "<group>"; };
+		486BDE9D1754EA17000F3B07 /* TextViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewCell2.m; sourceTree = "<group>"; };
 		F269A6E1008240ABA8550F74 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		FF644C7C316341C0950BECD6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -156,6 +165,12 @@
 		486BDE951753FA2A000F3B07 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				486BDE961754B1AC000F3B07 /* TextViewCell.h */,
+				486BDE971754B1AC000F3B07 /* TextViewCell.m */,
+				486BDE991754E2A5000F3B07 /* TextViewCell1.h */,
+				486BDE9A1754E2A5000F3B07 /* TextViewCell1.m */,
+				486BDE9C1754EA17000F3B07 /* TextViewCell2.h */,
+				486BDE9D1754EA17000F3B07 /* TextViewCell2.m */,
 				486BDE921753FA23000F3B07 /* AGTitleCell.h */,
 				486BDE931753FA23000F3B07 /* AGTitleCell.m */,
 			);
@@ -268,6 +283,9 @@
 				486BDE891753978D000F3B07 /* AGTask.m in Sources */,
 				486BDE911753B480000F3B07 /* AGTaskViewController.m in Sources */,
 				486BDE941753FA23000F3B07 /* AGTitleCell.m in Sources */,
+				486BDE981754B1AC000F3B07 /* TextViewCell.m in Sources */,
+				486BDE9B1754E2A5000F3B07 /* TextViewCell1.m in Sources */,
+				486BDE9E1754EA17000F3B07 /* TextViewCell2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
