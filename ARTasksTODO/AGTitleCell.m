@@ -28,6 +28,13 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGRect bounds = CGRectInset(self.contentView.bounds, 8, 8);
+    _txtField.frame = bounds;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
