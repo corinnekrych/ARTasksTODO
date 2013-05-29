@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ARGenericTableViewController.h"
 
-@interface AGTasksViewController : UITableViewController
+@interface AGTasksViewController :ARGenericTableViewController //: UITableViewController
 
 @end

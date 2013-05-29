@@ -80,8 +80,51 @@
 {
     NSLog(@"AGTasksView controller viewDidLoad");
     [super viewDidLoad];
-    [self retrieveDataFromAeroGearTODO];
-    [self.tableView reloadData];
+    //[self retrieveDataFromAeroGearTODO];
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.animateChanges = YES;
+    
+    ARTableViewData *tableViewData = [[ARTableViewData alloc] initWithSectionDataArray:@[[self sampleSectionData]]];
+    self.tableViewData = tableViewData;
+    //[self.tableView reloadData];
+}
+
+- (ARSectionData *)sampleSectionData
+{
+    // configure the section
+    ARSectionData *sectionData = [[ARSectionData alloc] init];
+    sectionData.headerTitle = @"Header1111";
+    sectionData.footerTitle = @"Footer";
+    
+    
+    // configure the cell
+    for (int i = 0; i < 3; i++) {
+        ARCellData *cellData = [[ARCellData alloc] initWithIdentifier:NSStringFromClass([self class])];
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([self class])];
+        
+        
+        cellData.editable = YES;
+        cellData.heigth = 44 + 10 * i;
+        
+        [cellData setCellConfigurationBlock:^(UITableViewCell *cell) {
+            // called in cellForRowAtIndexpath
+            cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", i];
+        }];
+        
+        [cellData setCellSelectionBlock:^(UITableView *tableView, NSIndexPath *indexPath) {
+            // called in didSelectRowAtIndexPath
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            alert.title = [NSString stringWithFormat:@"Cell %d", i];
+            [alert addButtonWithTitle:@"OK"];
+            [alert show];
+        }];
+        
+        [sectionData addCellData:cellData];
+    }
+    
+    return sectionData;
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,50 +133,50 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    // Return the number of rows in the section.
-    // Usually the number of items in your array (the one that holds your list)
-    return [_tasks count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //Where we configure the cell in each row
-    
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell;
-    
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    // Configure the cell... setting the text of our cell's label
-    //cell.textLabel.text = [_tasks objectAtIndex:indexPath.row];
-    
-    NSUInteger row = [indexPath row];
-    
-    cell.textLabel.text = [[_tasks objectAtIndex:row] objectForKey:@"title"];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    
-    //TODO
-    //AGTask *task = [_tasks objectAtIndex:row];
-    id task = [_tasks objectAtIndex:row];
-    
-    AGTaskViewController *taskController = [[AGTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    //taskController.delegate = self;
-    taskController.task = task;
-    
-    UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromRight;
-    [UIView beginAnimations: nil context: nil];
-    [UIView setAnimationDuration:0.4];
-    [UIView setAnimationTransition: trans forView: [self.view window] cache: NO];
-    
-	[self.navigationController pushViewController:taskController animated:NO];//YES];
-    
-    [UIView commitAnimations];
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    // Return the number of rows in the section.
+//    // Usually the number of items in your array (the one that holds your list)
+//    return [_tasks count];
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    //Where we configure the cell in each row
+//    
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell;
+//    
+//    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    // Configure the cell... setting the text of our cell's label
+//    //cell.textLabel.text = [_tasks objectAtIndex:indexPath.row];
+//    
+//    NSUInteger row = [indexPath row];
+//    
+//    cell.textLabel.text = [[_tasks objectAtIndex:row] objectForKey:@"title"];
+//    return cell;
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    
+//    //TODO
+//    //AGTask *task = [_tasks objectAtIndex:row];
+//    id task = [_tasks objectAtIndex:row];
+//    
+//    AGTaskViewController *taskController = [[AGTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    //taskController.delegate = self;
+//    taskController.task = task;
+//    
+//    UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromRight;
+//    [UIView beginAnimations: nil context: nil];
+//    [UIView setAnimationDuration:0.4];
+//    [UIView setAnimationTransition: trans forView: [self.view window] cache: NO];
+//    
+//	[self.navigationController pushViewController:taskController animated:NO];//YES];
+//    
+//    [UIView commitAnimations];
+//}
 
 @end
