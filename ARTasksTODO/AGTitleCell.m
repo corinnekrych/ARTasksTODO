@@ -10,9 +10,8 @@
 
 @implementation AGTitleCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (id)initWithCellIdentifier:(NSString *)cellID {
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     if (self) {
         _txtField = [[UITextField alloc] initWithFrame:CGRectZero];
         _txtField.font = [UIFont boldSystemFontOfSize:16.0];

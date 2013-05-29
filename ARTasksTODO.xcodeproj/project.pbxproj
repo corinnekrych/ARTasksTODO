@@ -24,6 +24,7 @@
 		486BDE981754B1AC000F3B07 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE971754B1AC000F3B07 /* TextViewCell.m */; };
 		486BDE9B1754E2A5000F3B07 /* TextViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE9A1754E2A5000F3B07 /* TextViewCell1.m */; };
 		486BDE9E1754EA17000F3B07 /* TextViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDE9D1754EA17000F3B07 /* TextViewCell2.m */; };
+		486BDEA11755EF92000F3B07 /* AGBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 486BDEA01755EF92000F3B07 /* AGBaseCell.m */; };
 		4E064F067F8B48D68EFA3A3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF644C7C316341C0950BECD6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		486BDE9A1754E2A5000F3B07 /* TextViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewCell1.m; sourceTree = "<group>"; };
 		486BDE9C1754EA17000F3B07 /* TextViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewCell2.h; sourceTree = "<group>"; };
 		486BDE9D1754EA17000F3B07 /* TextViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewCell2.m; sourceTree = "<group>"; };
+		486BDE9F1755EF92000F3B07 /* AGBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGBaseCell.h; sourceTree = "<group>"; };
+		486BDEA01755EF92000F3B07 /* AGBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBaseCell.m; sourceTree = "<group>"; };
 		F269A6E1008240ABA8550F74 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		FF644C7C316341C0950BECD6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,6 +168,8 @@
 		486BDE951753FA2A000F3B07 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				486BDE9F1755EF92000F3B07 /* AGBaseCell.h */,
+				486BDEA01755EF92000F3B07 /* AGBaseCell.m */,
 				486BDE961754B1AC000F3B07 /* TextViewCell.h */,
 				486BDE971754B1AC000F3B07 /* TextViewCell.m */,
 				486BDE991754E2A5000F3B07 /* TextViewCell1.h */,
@@ -286,6 +291,7 @@
 				486BDE981754B1AC000F3B07 /* TextViewCell.m in Sources */,
 				486BDE9B1754E2A5000F3B07 /* TextViewCell1.m in Sources */,
 				486BDE9E1754EA17000F3B07 /* TextViewCell2.m in Sources */,
+				486BDEA11755EF92000F3B07 /* AGBaseCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
