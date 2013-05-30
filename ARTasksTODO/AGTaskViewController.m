@@ -59,7 +59,73 @@ enum AGDueProjTagRows {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ARTableViewData *tableViewData = [[ARTableViewData alloc] initWithSectionDataArray:@[[self sectionTitle]]];
+    
+    // add the section to the tableView
+    [tableViewData addSectionData:[self sectionDescription]];
+    
+    // setting the tableViewData property will automaticaly reload the tableView
+    self.tableViewData = tableViewData;
+    
 }
+
+
+
+- (ARSectionData *)sectionTitle {
+    // configure the section
+    ARSectionData *sectionData = [[ARSectionData alloc] init];
+    [self.tableView registerClass:[TextViewCell1 class] forCellReuseIdentifier:NSStringFromClass([TextViewCell1 class])];
+    
+    // configure the cell
+    ARCellData *cellData = [[ARCellData alloc] initWithIdentifier:NSStringFromClass([TextViewCell1 class])];
+    [cellData setCellConfigurationBlock:^(TextViewCell1 *cell) {
+        // called in cellForRowAtIndexpath
+        cell.txtView.text = self.task[@"title"];
+    }];
+        
+        
+    [sectionData addCellData:cellData];    
+    return sectionData;
+}
+
+- (ARSectionData *)sectionDescription {
+    // configure the section
+    ARSectionData *sectionData = [[ARSectionData alloc] init];
+    [self.tableView registerClass:[TextViewCell class] forCellReuseIdentifier:NSStringFromClass([TextViewCell class])];
+    
+    // configure the cell
+    ARCellData *cellData = [[ARCellData alloc] initWithIdentifier:NSStringFromClass([TextViewCell class])];
+    [cellData setCellConfigurationBlock:^(TextViewCell *cell) {
+        // called in cellForRowAtIndexpath
+        cell.txtView.text = self.task[@"description"];
+    }];
+    
+    
+    [sectionData addCellData:cellData];
+    return sectionData;
+}
+
+- (ARSectionData *)sectionDueProjectTag {
+    // configure the section
+    ARSectionData *sectionData = [[ARSectionData alloc] init];
+    [self.tableView registerClass:[TextViewCell class] forCellReuseIdentifier:NSStringFromClass([TextViewCell class])];
+    
+    // configure the cell
+    ARCellData *cellData = [[ARCellData alloc] initWithIdentifier:NSStringFromClass([TextViewCell class])];
+    [cellData setCellConfigurationBlock:^(TextViewCell *cell) {
+        // called in cellForRowAtIndexpath
+        cell.txtView.text = self.task[@"description"];
+    }];
+    
+    [cellData setCellSelectionBlock:^(UITableView *tableView, NSIndexPath *indexPath) {
+        // called in didSelectRowAtIndexPath
+    }];
+    
+    [sectionData addCellData:cellData];
+    return sectionData;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,24 +139,25 @@ enum AGDueProjTagRows {
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return AGTableNumSections;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case AGTableSectionTitle:
-            return AGTableSecTitleNumRows;
-        case AGTableSectionDescr:
-            return AGTableSecDescrNumRows;
-        case AGTableSectionDueProjTag:
-            return AGTableSecDueProjTagNumRows;
-        default:
-            return 0;
-    }
-}
-
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return AGTableNumSections;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    switch (section) {
+//        case AGTableSectionTitle:
+//            return AGTableSecTitleNumRows;
+//        case AGTableSectionDescr:
+//            return AGTableSecDescrNumRows;
+//        case AGTableSectionDueProjTag:
+//            return AGTableSecDueProjTagNumRows;
+//        default:
+//            return 0;
+//    }
+//}
+//
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = [indexPath section];
@@ -152,5 +219,5 @@ enum AGDueProjTagRows {
     return cell;
 }
 
-
+*/
 @end

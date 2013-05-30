@@ -51,21 +51,21 @@
     id<AGPipe> tasksPipe;
     
     // create the 'todo' pipeline, which contains the 'projects' pipe:
-    AGPipeline *todo = [AGPipeline pipelineWithBaseURL:projectsURL];    // [4]
+    AGPipeline *todo = [AGPipeline pipelineWithBaseURL:projectsURL];    
     
-    tasksPipe = [todo pipe:^(id<AGPipeConfig> config) {                 // [5]
+    tasksPipe = [todo pipe:^(id<AGPipeConfig> config) {                 
         [config setName:@"tasks"];
         [config setAuthModule:authModule];
     }];
     
-    [authModule login:@"john" password:@"123" success:^(id object) {    // [6]
+    [authModule login:@"john" password:@"123" success:^(id object) {    
         
-        [tasksPipe read:^(id responseObject) {                          // [7]
+        [tasksPipe read:^(id responseObject) {                          
             
-            _tasks = responseObject;                                    // [8]
+            _tasks = responseObject;
             
-            [self.tableView reloadData];                                // [9]
-            
+            ARTableViewData *tableViewData = [[ARTableViewData alloc] initWithSectionDataArray:@[[self sampleSectionData]]];
+            self.tableViewData = tableViewData;         
         }
                 failure:^(NSError *error) {
                     NSLog(@"An error has occured during fetch! \n%@", error);
@@ -80,45 +80,38 @@
 {
     NSLog(@"AGTasksView controller viewDidLoad");
     [super viewDidLoad];
-    //[self retrieveDataFromAeroGearTODO];
+    [self retrieveDataFromAeroGearTODO];
     
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.animateChanges = YES;
-    
-    ARTableViewData *tableViewData = [[ARTableViewData alloc] initWithSectionDataArray:@[[self sampleSectionData]]];
-    self.tableViewData = tableViewData;
-    //[self.tableView reloadData];
 }
 
 - (ARSectionData *)sampleSectionData
 {
     // configure the section
     ARSectionData *sectionData = [[ARSectionData alloc] init];
-    sectionData.headerTitle = @"Header1111";
-    sectionData.footerTitle = @"Footer";
-    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     
     // configure the cell
-    for (int i = 0; i < 3; i++) {
-        ARCellData *cellData = [[ARCellData alloc] initWithIdentifier:NSStringFromClass([self class])];
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([self class])];
-        
-        
-        cellData.editable = YES;
-        cellData.heigth = 44 + 10 * i;
-        
+    for (id task in _tasks) {
+        ARCellData *cellData = [[ARCellData alloc] initWithIdentifier:NSStringFromClass([UITableViewCell class])];
+       
         [cellData setCellConfigurationBlock:^(UITableViewCell *cell) {
             // called in cellForRowAtIndexpath
-            cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", i];
+            cell.textLabel.text = [task objectForKey:@"title"];
         }];
         
         [cellData setCellSelectionBlock:^(UITableView *tableView, NSIndexPath *indexPath) {
-            // called in didSelectRowAtIndexPath
-            UIAlertView *alert = [[UIAlertView alloc] init];
-            alert.title = [NSString stringWithFormat:@"Cell %d", i];
-            [alert addButtonWithTitle:@"OK"];
-            [alert show];
+            AGTaskViewController *taskController = [[AGTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            taskController.task = task;
+            
+            UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromRight;
+            [UIView beginAnimations: nil context: nil];
+            [UIView setAnimationDuration:0.4];
+            [UIView setAnimationTransition: trans forView: [self.view window] cache: NO];
+            
+            [self.navigationController pushViewController:taskController animated:NO];
+            
+            [UIView commitAnimations];
+
         }];
         
         [sectionData addCellData:cellData];
@@ -133,50 +126,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    // Return the number of rows in the section.
-//    // Usually the number of items in your array (the one that holds your list)
-//    return [_tasks count];
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    //Where we configure the cell in each row
-//    
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell;
-//    
-//    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    // Configure the cell... setting the text of our cell's label
-//    //cell.textLabel.text = [_tasks objectAtIndex:indexPath.row];
-//    
-//    NSUInteger row = [indexPath row];
-//    
-//    cell.textLabel.text = [[_tasks objectAtIndex:row] objectForKey:@"title"];
-//    return cell;
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSUInteger row = [indexPath row];
-//    
-//    //TODO
-//    //AGTask *task = [_tasks objectAtIndex:row];
-//    id task = [_tasks objectAtIndex:row];
-//    
-//    AGTaskViewController *taskController = [[AGTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//    //taskController.delegate = self;
-//    taskController.task = task;
-//    
-//    UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromRight;
-//    [UIView beginAnimations: nil context: nil];
-//    [UIView setAnimationDuration:0.4];
-//    [UIView setAnimationTransition: trans forView: [self.view window] cache: NO];
-//    
-//	[self.navigationController pushViewController:taskController animated:NO];//YES];
-//    
-//    [UIView commitAnimations];
-//}
 
 @end

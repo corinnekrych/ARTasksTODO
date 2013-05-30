@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ARGenericTableViewController.h"
 
-@interface AGTasksViewController :ARGenericTableViewController //: UITableViewController
+@interface AGTasksViewController : ARGenericTableViewController 
 
 @end

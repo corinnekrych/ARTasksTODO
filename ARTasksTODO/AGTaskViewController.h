@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ARGenericTableViewController.h"
 
-@interface AGTaskViewController : UITableViewController
+@interface AGTaskViewController : ARGenericTableViewController
 @property (strong, nonatomic) id task;
 @end
